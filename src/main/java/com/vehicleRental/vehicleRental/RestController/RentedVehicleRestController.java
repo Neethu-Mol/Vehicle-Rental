@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.vehicleRental.vehicleRental.RequestBody.RentedVehicleDTO;
 import com.vehicleRental.vehicleRental.RequestBody.ResponseDto;
 import com.vehicleRental.vehicleRental.Services.RentedServices;
 
-@Repository
+@RestController
 @RequestMapping("api/rent")
 public class RentedVehicleRestController {
 
@@ -30,10 +31,18 @@ public class RentedVehicleRestController {
 		
 	}
 	
+	@PostMapping("/update-rent")
+	public ResponseEntity<ResponseDto> update(@RequestBody RentedVehicleDTO rentedVehicleDTO){
+		if(null != rentedVehicleDTO) {
+			return new ResponseEntity<>(service.update(rentedVehicleDTO), HttpStatus.OK);
+		}
+		return null;
+		
+	}
 	
-	@GetMapping("/update/{vehicleNumber}")
+	@GetMapping("/search/{VehicleNumber}")
 	public ResponseEntity<ResponseDto> updatePostUsage(@PathVariable String VehicleNumber){
-		if("".equals(VehicleNumber)) {
+		if(!"".equals(VehicleNumber)) {
 			return new ResponseEntity<>(service.findVehiclePurchaseDetails(VehicleNumber), HttpStatus.OK);
 		}
 		return null;

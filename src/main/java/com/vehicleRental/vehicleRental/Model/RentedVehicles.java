@@ -11,8 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "rented_vehicle_table")
 public class RentedVehicles {
 	
@@ -22,19 +29,19 @@ public class RentedVehicles {
 	private long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "vehicle_id", nullable = false)
+	@JoinColumn(name = "vehicle_id", nullable = true)
 	private Vehicle vehicle;
 	
 	@ManyToOne
-	@JoinColumn(name = "purchased_vs_id", nullable = false)
+	@JoinColumn(name = "purchased_vs_id", nullable = true)
 	private VehicleStation purchasedVehicleStation;
 	
 	@ManyToOne
-	@JoinColumn(name = "returned_vs_id", nullable = false)
+	@JoinColumn(name = "returned_vs_id", nullable = true)
 	private VehicleStation returnedVehicleStation;
 	
 	@Column(name = "rent_payment_status")

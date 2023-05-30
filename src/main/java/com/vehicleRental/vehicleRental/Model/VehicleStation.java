@@ -11,7 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "vehicle_station_table")
 public class VehicleStation {
 	
@@ -42,70 +49,5 @@ public class VehicleStation {
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getVehicleStastionName() {
-		return vehicleStastionName;
-	}
-
-	public void setVehicleStastionName(String vehicleStastionName) {
-		this.vehicleStastionName = vehicleStastionName;
-	}
-
-	public String getVehicleStationCode() {
-		return vehicleStationCode;
-	}
-
-	public void setVehicleStationCode(String vehicleStationCode) {
-		this.vehicleStationCode = vehicleStationCode;
-	}
-
-	public String getVehicleStationCity() {
-		return vehicleStationCity;
-	}
-
-	public void setVehicleStationCity(String vehicleStationCity) {
-		this.vehicleStationCity = vehicleStationCity;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	} 
-	
-	
 
 }

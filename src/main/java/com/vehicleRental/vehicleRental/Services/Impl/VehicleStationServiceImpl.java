@@ -35,7 +35,7 @@ public class VehicleStationServiceImpl implements VehicleStationService{
 		if("admin".equals(checkUser)) {
 			VehicleStation checkVehicleStation = vehicleStationDao.findByVehicleStationCodeIgnoreCase(vehicleStationdto.getVehicleStationCode());
 			if(null != checkVehicleStation) {
-				return new ResponseDto(200, true, "Vehicle number already exist", checkVehicleStation);
+				return new ResponseDto(200, true, "Vehicle number already exist", null);
 			}else {
 				
 				User newUser = new User();

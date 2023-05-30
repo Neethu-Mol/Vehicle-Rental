@@ -1,5 +1,7 @@
 package com.vehicleRental.vehicleRental.Services.Impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,10 +36,14 @@ public class RentedServiceImpl implements RentedServices{
 		VehicleStation purchasedStation = new VehicleStation();
 		purchasedStation.setId(rentedVehicleDTO.getPurchasedVehicleStationId());
 		
-		VehicleStation returnedStation = new VehicleStation();
-		returnedStation.setId(rentedVehicleDTO.getReturnedVehicleStationId());
+		newRentedDto.setUser(userObj);
+		newRentedDto.setVehicle(vehicleObj);
+		newRentedDto.setPurchasedVehicleStation(purchasedStation);
 		
-		return new ResponseDto(200, true, "retured procedure successfully completed", rvDao.save(newRentedDto));
+//		VehicleStation returnedStation = new VehicleStation();
+//		returnedStation.setId(rentedVehicleDTO.getReturnedVehicleStationId());
+		
+		return new ResponseDto(200, true, "purchased successfully ", rvDao.save(newRentedDto));
 		
 		
 	}
@@ -53,6 +59,34 @@ public class RentedServiceImpl implements RentedServices{
 		}
 		
 		
+	}
+
+	@Override
+	public ResponseDto update(RentedVehicleDTO rentedVehicleDTO) {
+		
+		Optional<RentedVehicles> newRentedDto = rvDao.findById(rentedVehicleDTO.getId());
+		
+		BeanUtils.copyProperties(rentedVehicleDTO, newRentedDto.get());
+		User userObj = new User();
+		userObj.setId(rentedVehicleDTO.getUserId());
+		
+		Vehicle vehicleObj = new Vehicle();
+		vehicleObj.setId(rentedVehicleDTO.getVehicleId());
+		
+		VehicleStation purchasedStation = new VehicleStation();
+		purchasedStation.setId(rentedVehicleDTO.getPurchasedVehicleStationId());
+		
+		VehicleStation returnedStation = new VehicleStation();
+		returnedStation.setId(rentedVehicleDTO.getReturnedVehicleStationId());
+		
+		newRentedDto.get().setUser(userObj);
+		newRentedDto.get().setVehicle(vehicleObj);
+		newRentedDto.get().setPurchasedVehicleStation(purchasedStation);
+		newRentedDto.get().setReturnedVehicleStation(returnedStation);
+		
+		
+		
+		return new ResponseDto(200, true, "updated successfully ", rvDao.save(newRentedDto.get()));
 	}
 
 }

@@ -2,6 +2,7 @@ package com.vehicleRental.vehicleRental.Services.Impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vehicleRental.vehicleRental.Model.User;
 import com.vehicleRental.vehicleRental.Model.Vehicle;
@@ -11,6 +12,7 @@ import com.vehicleRental.vehicleRental.RequestBody.ResponseDto;
 import com.vehicleRental.vehicleRental.RequestBody.VehicleDTO;
 import com.vehicleRental.vehicleRental.Services.VehicleService;
 
+@Service
 public class VehicleServiceImpl implements VehicleService{
 	
 	@Autowired
@@ -26,7 +28,7 @@ public class VehicleServiceImpl implements VehicleService{
 		if("admin".equals(checkUser)) {
 			Vehicle checkVehicle = vehicleDao.findByVehicleNumberIgnoreCase(vehicledto.getVehicleNumber());
 			if(null != checkVehicle) {
-				return new ResponseDto(200, true, "Vehicle number already exist", checkVehicle);
+				return new ResponseDto(200, true, "Vehicle number already exist", null);
 			}else {
 				
 				User newUser = new User();

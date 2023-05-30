@@ -18,7 +18,7 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/generate-otp")
+	@GetMapping("/generate-otp/{phone}")
 	public ResponseEntity<ResponseDto> generateOtp(@PathVariable String phone){
 		return new ResponseEntity<>(userService.generateOtp(phone), HttpStatus.OK);
 	}

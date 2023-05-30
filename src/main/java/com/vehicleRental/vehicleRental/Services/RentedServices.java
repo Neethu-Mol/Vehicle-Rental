@@ -6,6 +6,8 @@ import com.vehicleRental.vehicleRental.RequestBody.ResponseDto;
 public interface RentedServices {
 
 	ResponseDto createRentedVehicle(RentedVehicleDTO rentedVehicleDTO);
+	
+	ResponseDto update(RentedVehicleDTO rentedVehicleDTO);
 
 	ResponseDto findVehiclePurchaseDetails(String vehicleNumber);
 

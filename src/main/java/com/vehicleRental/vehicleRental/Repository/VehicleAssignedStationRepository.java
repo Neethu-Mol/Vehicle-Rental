@@ -13,7 +13,7 @@ import com.vehicleRental.vehicleRental.Model.VehicleAssignedStations;
 @Repository
 public interface VehicleAssignedStationRepository extends JpaRepository<VehicleAssignedStations, Long>{
 	
-	@Query("select * from VehicleAssignedStations v left join VehicleStation vs on v.vehicleStation.id = vs.id where vs.vehicleStastionName = :vehicleStastionName")
+	@Query("select v from VehicleAssignedStations v left join VehicleStation vs on v.vehicleStation.id = vs.id where vs.vehicleStastionName = :vehicleStastionName")
 	List<VehicleAssignedStations> listofVehicles(String vehicleStastionName);
 	
 
